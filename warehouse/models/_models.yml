@@ -1,0 +1,97 @@
+version: 2
+
+models:
+  - name: stg_float__people
+    description: People and role placeholders from GET /people.
+    columns:
+      - name: people_id
+        tests: [unique, not_null]
+      - name: people_type_id
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+      - name: role_id
+        tests:
+          - relationships:
+              to: ref('stg_float__roles')
+              field: role_id
+
+  - name: stg_float__roles
+    columns:
+      - name: role_id
+        tests: [unique, not_null]
+      - name: role_name
+        tests: [unique, not_null]
+
+  - name: stg_float__clients
+    columns:
+      - name: client_id
+        tests: [unique, not_null]
+
+  - name: stg_float__projects
+    columns:
+      - name: project_id
+        tests: [unique, not_null]
+      - name: project_code
+        tests: [unique, not_null]
+      - name: client_id
+        tests:
+          - relationships:
+              to: ref('stg_float__clients')
+              field: client_id
+
+  - name: stg_float__project_team
+    description: Project members and the project role each was staffed as.
+    columns:
+      - name: people_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_float__people')
+              field: people_id
+      - name: role_id
+        tests:
+          - relationships:
+              to: ref('stg_float__roles')
+              field: role_id
+
+  - name: stg_float__allocations
+    description: Allocations from GET /tasks. Each one is a staffing decision.
+    columns:
+      - name: task_id
+        tests: [unique, not_null]
+      - name: people_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_float__people')
+              field: people_id
+      - name: project_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_float__projects')
+              field: project_id
+      - name: hours_per_day
+        tests: [not_null]
+
+  - name: int_staffing_decisions
+    columns:
+      - name: decision_id
+        tests: [unique, not_null]
+      - name: role_id
+        tests: [not_null]
+      - name: as_of_date
+        tests: [not_null]
+
+  - name: fct_candidate_signals
+    description: >
+      Candidate pool and history signals per staffing decision, as known on the decision's
+      as_of_date. One row per (decision, eligible person).
+    columns:
+      - name: decision_id
+        tests: [not_null]
+      - name: people_id
+        tests: [not_null]
+      - name: booked_hours
+        tests: [not_null]

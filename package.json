@@ -1,0 +1,28 @@
+{
+  "name": "float-nextgen",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Seed a realistic agency into a Float trial account and backtest experience-aware staffing recommendations.",
+  "scripts": {
+    "world": "tsx src/world.ts",
+    "ping": "tsx src/ping.ts",
+    "load": "tsx src/load.ts",
+    "cleanup": "tsx src/cleanup.ts",
+    "pull": "tsx src/pull.ts",
+    "backtest": "tsx src/backtest.ts",
+    "dump-features": "tsx src/dump-features.ts",
+    "warehouse": "npm run dump-features && dbt build --project-dir warehouse --profiles-dir warehouse",
+    "mcp": "tsx src/mcp.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "tsx": "4.19.2",
+    "typescript": "5.6.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.17.0",
+    "zod": "3.24.2"
+  }
+}

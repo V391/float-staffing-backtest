@@ -1,0 +1,8 @@
+# Local DuckDB file standing in for the warehouse (BigQuery in production).
+float_nextgen:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: warehouse/float.duckdb
+      threads: 4

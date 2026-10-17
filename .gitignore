@@ -1,0 +1,12 @@
+node_modules/
+.env
+out/
+.venv/
+logs/
+warehouse/target/
+warehouse/logs/
+warehouse/float.duckdb*
+warehouse/.user.yml
+# Local only: machine-specific MCP paths and personal notes
+.mcp.json
+notes/

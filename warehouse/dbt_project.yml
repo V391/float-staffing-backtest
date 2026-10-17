@@ -1,0 +1,27 @@
+name: float_nextgen
+version: '0.1.0'
+config-version: 2
+profile: float_nextgen
+
+model-paths: [models]
+test-paths: [tests]
+macro-paths: [macros]
+target-path: target
+clean-targets: [target]
+
+# Paths are relative to where dbt is run from: the repo root (see `npm run warehouse`).
+vars:
+  float_export_path: out/float-export.json
+  ts_features_path: out/ts-features.csv
+  as_of_today: '2026-10-17'
+
+models:
+  float_nextgen:
+    base:
+      +materialized: table
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
