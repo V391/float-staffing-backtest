@@ -69,7 +69,10 @@ export class FloatClient {
         await sleep(retryAfter * 1000);
         continue;
       }
-      if (res.status >= 500) {
+      // A 429 means Float rejected the call before processing it, so any method is safe to retry.
+      // A 5xx on a write may already have been applied, so only GETs retry; writes surface the error
+      // and the caller's manifest decides what to do.
+      if (res.status >= 500 && method === 'GET') {
         await sleep(2000 * (attempt + 1));
         continue;
       }
@@ -105,8 +108,11 @@ export class FloatClient {
     for (let page = 1; ; page++) {
       const { data, headers } = await this.get<T[]>(`${path}${sep}per-page=200&page=${page}`);
       out.push(...data);
-      const pages = Number(headers.get('x-pagination-page-count') ?? 1);
-      if (page >= pages) return out;
+      const pageCount = headers.get('x-pagination-page-count');
+      // Float documents this header on every list endpoint. Without it we cannot know the list is
+      // complete, and a silent partial pull would corrupt everything downstream.
+      if (pageCount === null) throw new Error(`GET ${path}: missing X-Pagination-Page-Count header, refusing a partial pull`);
+      if (page >= Number(pageCount)) return out;
     }
   }
 }

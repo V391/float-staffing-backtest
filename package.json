@@ -1,5 +1,5 @@
 {
-  "name": "float-nextgen",
+  "name": "float-staffing-backtest",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,8 @@
     "dump-features": "tsx src/dump-features.ts",
     "warehouse": "npm run dump-features && dbt build --project-dir warehouse --profiles-dir warehouse",
     "mcp": "tsx src/mcp.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsc --noEmit && node --import tsx --test tests/ranking.test.ts"
   },
   "devDependencies": {
     "@types/node": "22.10.2",

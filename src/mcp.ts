@@ -26,10 +26,10 @@ function train() {
   data = loadData(EXPORT);
   fb = new FeatureBuilder(data);
   model = new ExperienceModel();
-  const { groups } = toGroups(fb, buildDecisions(data, today()));
+  const { groups, skipped } = toGroups(fb, buildDecisions(data, today()));
   model.fit(groups);
   trainedOn = groups.length;
-  console.error(`float-nextgen: trained on ${trainedOn} past staffing decisions`);
+  console.error(`float-staffing-backtest: trained on ${trainedOn} past staffing decisions (${skipped} skipped: chosen person not in candidate pool)`);
 }
 
 if (!existsSync(EXPORT)) {

@@ -1,6 +1,6 @@
-# float-nextgen
+# float-staffing-backtest
 
-Experience-aware staffing recommendations for [Float](https://www.float.com), backtested against the logic of Float's Smart assign.
+Experience-aware staffing recommendations for [Float](https://www.float.com), backtested against the logic of Float's Smart assign. Two-page write-up: [docs/Experience-aware-staffing-for-Float.pdf](docs/Experience-aware-staffing-for-Float.pdf).
 
 Smart assign ranks people by job title and availability ([help article](https://support.float.com/en/articles/13868430-role-based-planning-smart-assign)), so for a given role it suggests the same people whatever the client. This repo adds past work as a signal (same client, similar projects, skills, colleagues) and measures whether that picks the person a manager actually chose.
 
@@ -85,6 +85,19 @@ npm run warehouse             # dumps TS features, then dbt build (models + 46 t
 ```
 
 `npm run cleanup -- --yes` deletes from Float exactly what `load` created, nothing else.
+
+`npm test` typechecks and runs the unit tests in `tests/` (title matching tiers, baseline ordering, tie handling, and that the model learns a planted signal). The dbt tests cover the data layer.
+
+## Evidence, not just results
+
+- `data/smart-assign-capture.csv`: Smart assign's actual top 3 for 20 open roles, recorded in the Float app on 17 Oct 2026. The baseline ranker is checked against this, not against my reading of the docs.
+- `out/backtest.json` (after a run): every decision, candidate pool size, learned weights, and the live comparison, so a number in the README can be traced to the rows that produced it.
+- `warehouse/tests/assert_no_feature_leakage.sql` fails the build if any feature uses data from after the decision it feeds. `assert_ts_sql_feature_parity.sql` fails it if the SQL and TypeScript features disagree on any of the 16,663 candidate rows.
+- Loading is resumable: `out/manifest.json` records every Float id created, so an interrupted load continues instead of duplicating, and cleanup removes exactly those ids.
+
+## How I used Claude Code
+
+Most of the code was first drafted with Claude Code and then reworked. The parts that mattered, I designed and checked myself: the staffing rule behind the synthetic agency, the decision to replay history as of each project's start date, the control run that tests whether the model invents an effect, and reading Smart assign's live picks against the baseline. Things I rejected or rewrote along the way: a Python Timefold path (the binding was archived in 2025), retrying writes on 5xx (a POST may already have applied), and a first version of the results that claimed the lift "doubles" when half of it came from weighting title and availability better. The commits carry a co-author line because that is what happened.
 
 ## MCP
 
