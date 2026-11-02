@@ -2,6 +2,8 @@
 
 Experience-aware staffing recommendations for [Float](https://www.float.com), backtested against the logic of Float's Smart assign. Two-page write-up: [Experience-aware staffing for Float (PDF)](https://v391.github.io/float-staffing-backtest/docs/Experience-aware-staffing-for-Float.pdf).
 
+**Detailed methodology:** [Step-by-step methodology and technical implementation](docs/METHODOLOGY.md), including data generation, decision labels, candidate pools, feature engineering, conditional logistic regression, temporal backtesting, validation, and limitations.
+
 Smart assign ranks people by job title and availability ([help article](https://support.float.com/en/articles/13868430-role-based-planning-smart-assign)), so for a given role it suggests the same people whatever the client. This repo adds past work as a signal (same client, similar projects, skills, colleagues) and measures whether that picks the person a manager actually chose.
 
 ## Results
