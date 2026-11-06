@@ -97,9 +97,6 @@ npm run warehouse             # dumps TS features, then dbt build (models + 46 t
 - `warehouse/tests/assert_no_feature_leakage.sql` fails the build if any feature uses data from after the decision it feeds. `assert_ts_sql_feature_parity.sql` fails it if the SQL and TypeScript features disagree on any of the 16,663 candidate rows.
 - Loading is resumable: `out/manifest.json` records every Float id created, so an interrupted load continues instead of duplicating, and cleanup removes exactly those ids.
 
-## How I used Claude Code
-
-Most of the code was first drafted with Claude Code and then reworked. The parts that mattered, I designed and checked myself: the staffing rule behind the synthetic agency, the decision to replay history as of each project's start date, the control run that tests whether the model invents an effect, and reading Smart assign's live picks against the baseline. Things I rejected or rewrote along the way: a Python Timefold path (the binding was archived in 2025), retrying writes on 5xx (a POST may already have applied), and a first version of the results that claimed the lift "doubles" when half of it came from weighting title and availability better. The commits carry a co-author line because that is what happened.
 
 ## MCP
 
