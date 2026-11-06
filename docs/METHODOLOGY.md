@@ -1,6 +1,6 @@
 # Methodology: Experience-aware staffing for Float
 
-This document describes what the repository actually implements. It is intended as a technical walkthrough and interview reference, not a claim that the model was deployed inside Float.
+This document describes what the repository actually implements. 
 
 ## 1. Problem and hypothesis
 
