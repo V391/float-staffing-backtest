@@ -143,10 +143,6 @@ npm run warehouse             # dumps TS features, then dbt build (models + test
 - `out/backtest.json` (after a run): decision counts, candidate pool size, learned weights, and the live comparison row by row.
 - Loading is resumable: `out/manifest.json` records every Float id created, so an interrupted load continues instead of duplicating, and cleanup removes exactly those ids.
 
-## How I used Claude Code
-
-Most of the code was first drafted with Claude Code and then reworked. The parts that mattered, I designed and checked myself: the staffing rule behind the synthetic agency, the decision to replay history as of each project's start date, the control run that tests whether the model invents an effect, and reading Smart assign's live picks against the baseline. Things I rejected or rewrote along the way: a Python Timefold path (the binding was archived in 2025), retrying writes on 5xx (a POST may already have applied), and a first version of the results that claimed the lift "doubles". The November audit was also AI assisted, and I checked its findings by rerunning them. The commits carry a co-author line because that is what happened.
-
 ## MCP
 
 `npm run mcp` starts a stdio MCP server over the pulled data. Register it with Claude Code or Claude Desktop as `node --import tsx src/mcp.ts` from this folder. Ask it things like "who should be Senior Designer on KST-P083?" or "who fits an Art Director role for a new Stride Athletics campaign in January?"
