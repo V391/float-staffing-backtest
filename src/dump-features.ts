@@ -12,7 +12,7 @@ const TODAY = arg('today') ?? '2026-10-17';
 
 const data = loadData(IN);
 const fb = new FeatureBuilder(data);
-const lines = ['decision_id,people_id,is_chosen,same_client_projects,teammates_known,skill_matches,booked_hours'];
+const lines = ['decision_id,people_id,is_chosen,same_client_projects,skill_matches,booked_hours'];
 for (const d of buildDecisions(data, TODAY)) {
   const decisionId = d.key.split(':')[1];
   for (const c of fb.candidates(d)) {
@@ -22,7 +22,6 @@ for (const d of buildDecisions(data, TODAY)) {
         c.person.id,
         c.person.id === d.chosenId ? 1 : 0,
         c.detail.clientProjects,
-        c.detail.teammatesKnown,
         c.detail.skills.length,
         c.detail.bookedHours.toFixed(4),
       ].join(','),

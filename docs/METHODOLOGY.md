@@ -1,12 +1,14 @@
 # Methodology: Experience-aware staffing for Float
 
+![Project flow in 12 steps, from the question to Float's real data](project-flow.svg)
+
 This document describes what the repository actually implements. 
 
 ## 1. Problem and hypothesis
 
 Float's documented Smart Assign behaviour is used as the benchmark: role fit is grouped into fit tiers, then availability is considered. The project tests whether adding evidence from an employee's previous work can improve the ranking for a specific client and project brief.
 
-The hypothesis is that two employees with similar role fit and capacity may not be equally suitable when one has worked with the client, on similar projects, or with the proposed teammates.
+The hypothesis is that two employees with similar role fit and capacity may not be equally suitable when one has worked with the client or on similar projects.
 
 **Scope:** this repository builds an independent recommendation engine using data exported from Float. It does not modify or integrate with Float's proprietary Smart Assign UI or internal ranking service.
 
@@ -37,14 +39,14 @@ For each historical decision, the feature builder reconstructs the candidate poo
 The candidate pool excludes people who:
 - had not yet joined by the role's start date;
 - would leave before the role's end date;
-- were already on the project team;
+- were already on the project team, for open roles only (a replayed decision can't use the finished team, because other roles may not have been filled yet);
 - did not have enough remaining capacity for the requested hours over the role window.
 
 The candidate pool and features are reconstructed as of the decision date, rather than using the employee's current profile or later project history.
 
-## 5. Engineer the seven candidate features
+## 5. Engineer the six candidate features
 
-`src/features.ts` calculates seven numeric features for every candidate-decision pair:
+`src/features.ts` calculates six numeric features for every candidate-decision pair:
 
 | Feature | Implementation |
 |---|---|
@@ -53,7 +55,6 @@ The candidate pool and features are reconstructed as of the decision date, rathe
 | `sameClient` | Log-transformed, recency-weighted count of the candidate's previous projects for the same client. |
 | `tagOverlap` | Fraction of the current project's tags supported by the candidate's recency-weighted history of project tags. |
 | `textSim` | Cosine similarity between the current brief's TF-IDF vector and a recency-weighted profile of the candidate's previous project notes and tags. Client-name tokens are removed. |
-| `knowsTeam` | Fraction of the other named project teammates whom the candidate has worked with on a previous project. |
 | `skillMatch` | Count of the candidate's skill tags that overlap the project's tags, capped at 3. |
 
 Historical project contributions are decayed by `exp(-daysBetween(projectStart, decisionDate) / 365)`, so more recent work contributes more strongly.
@@ -70,7 +71,7 @@ This is a transparent project-built proxy based on Float's published description
 
 ### Experience-aware ranker: conditional logistic regression
 
-The second ranker uses all seven features. In `ExperienceModel.fit()`:
+The second ranker uses all six features. In `ExperienceModel.fit()`:
 
 1. Calculate the mean and standard deviation of each feature across the training candidate rows.
 2. Standardise each candidate's feature vector.
@@ -96,25 +97,29 @@ The experience model is fitted only on the training groups. Both the baseline an
 Metrics:
 - **Hit@1 / first-pick accuracy:** percentage of decisions where the historically chosen employee is ranked first.
 - **Hit@3 / top-three accuracy:** percentage where the historically chosen employee appears in the first three.
+- Ties in hit@1 and hit@3 are broken at random, so a ranker that ties often is not penalised.
 - **MRR (mean reciprocal rank):** average of the reciprocal rank of the historically chosen employee.
 
-The README reports 205 held-out decisions for the default 54-person run: the Float-style proxy achieved 68% Hit@3 and 32% Hit@1; the experience model achieved 71% Hit@3 and 37% Hit@1. These results are measured against the synthetic historical choices, not Float customer outcomes.
+The README reports 205 held-out decisions for the default 54-person run: the Float-style proxy achieved 66.5% Hit@3 and 33.1% Hit@1; the experience model achieved 67.8% Hit@3 and 36.6% Hit@1. One agency is too small a sample to separate these gaps from noise, so the size sweep and control in the README carry the evidence. These results are measured against the synthetic historical choices, not Float customer outcomes.
 
 ## 8. Compare against captured Float Smart Assign recommendations
 
 Separately from the historical holdout, `data/smart-assign-capture.csv` stores the top-three suggestions captured manually from Float's application for 20 live open roles on 17 October 2026.
 
-The backtest compares those captured lists with the baseline and experience-aware recommendations. The README reports that the known synthetic generator choice appeared in the top three for 15/20 captured Float Smart Assign lists and 16/20 experience-model lists.
+The backtest compares those captured lists with the baseline and experience-aware recommendations. The README reports that the known synthetic generator choice appeared in the top three for 15/20 captured Float Smart Assign lists and 15/20 experience-model lists, which is a tie.
 
 This is **not** a comparison against real staffing ground truth: the evaluation target is the generator's hidden intended choice for each synthetic open role. Float's actual suggestions are real captured product outputs, but the target used to score them is synthetic. The baseline's first-pick agreement with Float is also reported separately.
 
 ## 9. Data validation and leakage controls
 
+Unit tests in `tests/audit.test.ts` check the evaluation itself: fair tie scoring, a baseline that uses only title and availability, signals unchanged by later work or by the finished team, recency weighting, and a control where the model gives history weight only when history drove the choice.
+
 The dbt tests are intended to protect the feature dataset:
 
 - `assert_chosen_person_in_pool.sql`: every historical selected employee must exist in that decision's candidate pool.
 - `assert_no_feature_leakage.sql`: the latest historical project used for a candidate must start before the decision's as-of date.
-- `assert_ts_sql_feature_parity.sql`: SQL and TypeScript candidate signals must agree row by row. The README reports parity across 16,663 candidate rows.
+- `assert_pool_ignores_finished_team.sql`: a replayed decision must not rule anyone out for being on the project's finished team.
+- `assert_ts_sql_feature_parity.sql`: SQL and TypeScript candidate pools, same client counts, skill matches, booked hours and the chosen flag must agree row by row, across 18,266 candidate rows. It does not compare title fit, availability, tag overlap or text similarity.
 - The dbt project also declares model tests for keys and relationships.
 
 These checks validate important properties of the pipeline. They do not establish that synthetic staffing choices are a valid proxy for real-world staffing quality.
@@ -123,7 +128,7 @@ These checks validate important properties of the pipeline. They do not establis
 
 The current `TextIndex` in `src/features.ts` calculates document frequencies from all projects in the export when it is constructed. Candidate history aggregation itself filters to projects that started before the decision date, but the TF-IDF inverse-document-frequency weights can therefore reflect projects that started later.
 
-The SQL leakage test checks historical project usage, but does not test this corpus-level IDF timing. For a stricter temporal evaluation, fit the text vocabulary and IDF statistics using only documents available at each training/evaluation cutoff (or use a fold-specific index), then rerun the backtest and parity tests. Do not describe the current implementation as having fully eliminated every possible source of temporal leakage.
+The SQL leakage test checks historical project usage, but does not test this corpus-level IDF timing. For a stricter temporal evaluation, fit the text vocabulary and IDF statistics using only documents available at each training/evaluation cutoff (or use a fold-specific index), then rerun the backtest and parity tests. Do not describe the current implementation as having fully eliminated every possible source of temporal leakage. Two smaller gaps remain: the pool knows if someone later leaves, and time off is not dated by when it was booked. On real data, allocations show the final booking, so a fair replay also needs change history.
 
 ## 10. Recommendation serving and system boundary
 

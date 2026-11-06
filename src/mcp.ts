@@ -90,7 +90,7 @@ registerTool<{ project_code: string; role?: string; top_k?: number }>(
   {
     title: 'Recommend people for an open role',
     description:
-      'Ranks who should fill an open role on a Float project, using role fit, availability, past work for the same client, similar past projects, skills and who they have worked with. Explains each pick.',
+      'Ranks who should fill an open role on a Float project, using role fit, availability, past work for the same client, similar past projects and skills. Explains each pick.',
     inputSchema: {
       project_code: z.string().describe('Float project code, e.g. KST-P085'),
       role: z.string().optional().describe('Role name, e.g. "Senior Designer". Omit to cover every open role.'),

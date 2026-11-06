@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="t d" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title id="t">Past work adds about 4 points to the top 3 from about 100 people</title>
+<desc id="d">Lift in top 3 accuracy over a reconstruction of Smart assign, by agency size, for agencies where past work shaped staffing and for a control where it did not.</desc>
+<rect width="720" height="400" fill="#ffffff"/>
+<text x="0" y="24" font-size="18" fill="#0b0b0b" text-anchor="start" font-weight="600">Past work adds about 4 points to the top 3 from about 100 people</text>
+<text x="0" y="48" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">Lift in top 3 accuracy over a reconstruction of Smart assign, in percentage points</text>
+<text x="0" y="66" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">Simulated agencies, 10 per size. Bars show 95% confidence intervals.</text>
+<circle cx="8" cy="88" r="5.5" fill="#2a78d6"/><text x="20" y="92" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="400">Past work shaped staffing</text><circle cx="220" cy="88" r="5.5" fill="#eb6834"/><text x="232" y="92" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="400">Control: past work played no part</text>
+<line x1="54" x2="700" y1="338" y2="338" stroke="#e4e3df" stroke-width="1"/>
+<text x="44" y="342" font-size="12" fill="#52514e" text-anchor="end" font-weight="400">-2</text>
+<line x1="54" x2="700" y1="281.5" y2="281.5" stroke="#8c8b86" stroke-width="1"/>
+<text x="44" y="285.5" font-size="12" fill="#52514e" text-anchor="end" font-weight="400">0</text>
+<line x1="54" x2="700" y1="225" y2="225" stroke="#e4e3df" stroke-width="1"/>
+<text x="44" y="229" font-size="12" fill="#52514e" text-anchor="end" font-weight="400">+2</text>
+<line x1="54" x2="700" y1="168.5" y2="168.5" stroke="#e4e3df" stroke-width="1"/>
+<text x="44" y="172.5" font-size="12" fill="#52514e" text-anchor="end" font-weight="400">+4</text>
+<line x1="54" x2="700" y1="112" y2="112" stroke="#e4e3df" stroke-width="1"/>
+<text x="44" y="116" font-size="12" fill="#52514e" text-anchor="end" font-weight="400">+6</text>
+<line x1="107.6" x2="107.6" y1="298.45" y2="239.125" stroke="#eb6834" stroke-width="2"/><circle cx="107.6" cy="267.375" r="5.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"/><line x1="236.79999999999998" x2="236.79999999999998" y1="304.1" y2="284.325" stroke="#eb6834" stroke-width="2"/><circle cx="236.79999999999998" cy="292.8" r="5.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"/><line x1="366" x2="366" y1="304.1" y2="270.2" stroke="#eb6834" stroke-width="2"/><circle cx="366" cy="287.15" r="5.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"/><line x1="495.19999999999993" x2="495.19999999999993" y1="289.975" y2="270.2" stroke="#eb6834" stroke-width="2"/><circle cx="495.19999999999993" cy="281.5" r="5.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"/><line x1="624.4" x2="624.4" y1="289.975" y2="273.025" stroke="#eb6834" stroke-width="2"/><circle cx="624.4" cy="281.5" r="5.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"/>
+<line x1="129.6" x2="129.6" y1="295.625" y2="199.575" stroke="#2a78d6" stroke-width="2"/><circle cx="129.6" cy="247.6" r="5.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/><text x="140.6" y="251.6" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">+1.2</text><line x1="258.79999999999995" x2="258.79999999999995" y1="210.875" y2="154.375" stroke="#2a78d6" stroke-width="2"/><circle cx="258.79999999999995" cy="182.625" r="5.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/><text x="269.79999999999995" y="186.625" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">+3.5</text><line x1="388" x2="388" y1="193.925" y2="128.95" stroke="#2a78d6" stroke-width="2"/><circle cx="388" cy="162.85" r="5.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/><text x="399" y="166.85" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">+4.2</text><line x1="517.1999999999999" x2="517.1999999999999" y1="196.75" y2="162.85" stroke="#2a78d6" stroke-width="2"/><circle cx="517.1999999999999" cy="179.8" r="5.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/><text x="528.1999999999999" y="183.8" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">+3.6</text><line x1="646.4" x2="646.4" y1="179.8" y2="148.725" stroke="#2a78d6" stroke-width="2"/><circle cx="646.4" cy="162.85" r="5.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/><text x="657.4" y="166.85" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">+4.2</text>
+<text x="118.6" y="362" font-size="13" fill="#52514e" text-anchor="middle" font-weight="400">54</text>
+<text x="247.79999999999998" y="362" font-size="13" fill="#52514e" text-anchor="middle" font-weight="400">108</text>
+<text x="377" y="362" font-size="13" fill="#52514e" text-anchor="middle" font-weight="400">216</text>
+<text x="506.19999999999993" y="362" font-size="13" fill="#52514e" text-anchor="middle" font-weight="400">324</text>
+<text x="635.4" y="362" font-size="13" fill="#52514e" text-anchor="middle" font-weight="400">486</text>
+<text x="377" y="386" font-size="12" fill="#52514e" text-anchor="middle" font-weight="400">People in the agency</text>
+</svg>

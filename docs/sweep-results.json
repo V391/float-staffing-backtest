@@ -1,0 +1,359 @@
+{
+  "generatedAt": "2026-11-06T15:21:35.323Z",
+  "summary": {
+    "gumbel": [
+      {
+        "scale": 1,
+        "people": 54,
+        "seeds": 10,
+        "testDecisions": 180,
+        "candidates": 40,
+        "baselineTopTied": 12,
+        "sameClientWeight": {
+          "main": 0.18,
+          "control": 0.03
+        },
+        "hit1": {
+          "baseline": 39.1,
+          "experience": 39.7,
+          "lift": {
+            "mean": 0.7,
+            "low": -1.1,
+            "high": 2.4
+          },
+          "controlLift": {
+            "mean": -0.2,
+            "low": -1.4,
+            "high": 1
+          },
+          "experienceLift": {
+            "mean": 0.9,
+            "low": -1.5,
+            "high": 3.3
+          }
+        },
+        "hit3": {
+          "baseline": 68.9,
+          "experience": 70.1,
+          "lift": {
+            "mean": 1.2,
+            "low": -0.5,
+            "high": 2.9
+          },
+          "controlLift": {
+            "mean": 0.5,
+            "low": -0.6,
+            "high": 1.5
+          },
+          "experienceLift": {
+            "mean": 0.7,
+            "low": -0.8,
+            "high": 2.3
+          }
+        }
+      },
+      {
+        "scale": 2,
+        "people": 108,
+        "seeds": 10,
+        "testDecisions": 391,
+        "candidates": 76,
+        "baselineTopTied": 23,
+        "sameClientWeight": {
+          "main": 0.22999999999999998,
+          "control": -0.01
+        },
+        "hit1": {
+          "baseline": 27.9,
+          "experience": 30.7,
+          "lift": {
+            "mean": 2.8,
+            "low": 1.7,
+            "high": 3.8
+          },
+          "controlLift": {
+            "mean": -0.6,
+            "low": -1.8,
+            "high": 0.7
+          },
+          "experienceLift": {
+            "mean": 3.3,
+            "low": 1.8,
+            "high": 4.9
+          }
+        },
+        "hit3": {
+          "baseline": 55.5,
+          "experience": 59,
+          "lift": {
+            "mean": 3.5,
+            "low": 2.5,
+            "high": 4.5
+          },
+          "controlLift": {
+            "mean": -0.4,
+            "low": -0.8,
+            "high": -0.1
+          },
+          "experienceLift": {
+            "mean": 3.9,
+            "low": 2.9,
+            "high": 5
+          }
+        }
+      },
+      {
+        "scale": 4,
+        "people": 216,
+        "seeds": 10,
+        "testDecisions": 794,
+        "candidates": 147,
+        "baselineTopTied": 41,
+        "sameClientWeight": {
+          "main": 0.21000000000000002,
+          "control": 0.02
+        },
+        "hit1": {
+          "baseline": 19.6,
+          "experience": 23.4,
+          "lift": {
+            "mean": 3.9,
+            "low": 3,
+            "high": 4.7
+          },
+          "controlLift": {
+            "mean": -0.7,
+            "low": -1.2,
+            "high": -0.2
+          },
+          "experienceLift": {
+            "mean": 4.6,
+            "low": 3.7,
+            "high": 5.5
+          }
+        },
+        "hit3": {
+          "baseline": 42.4,
+          "experience": 46.6,
+          "lift": {
+            "mean": 4.2,
+            "low": 3.1,
+            "high": 5.4
+          },
+          "controlLift": {
+            "mean": -0.2,
+            "low": -0.8,
+            "high": 0.4
+          },
+          "experienceLift": {
+            "mean": 4.4,
+            "low": 3.6,
+            "high": 5.3
+          }
+        }
+      },
+      {
+        "scale": 6,
+        "people": 324,
+        "seeds": 10,
+        "testDecisions": 1228,
+        "candidates": 216,
+        "baselineTopTied": 48,
+        "sameClientWeight": {
+          "main": 0.16999999999999998,
+          "control": -0.01
+        },
+        "hit1": {
+          "baseline": 16.5,
+          "experience": 18.9,
+          "lift": {
+            "mean": 2.3,
+            "low": 1.7,
+            "high": 3
+          },
+          "controlLift": {
+            "mean": 0,
+            "low": -0.6,
+            "high": 0.7
+          },
+          "experienceLift": {
+            "mean": 2.3,
+            "low": 1.2,
+            "high": 3.5
+          }
+        },
+        "hit3": {
+          "baseline": 35.9,
+          "experience": 39.5,
+          "lift": {
+            "mean": 3.6,
+            "low": 3,
+            "high": 4.2
+          },
+          "controlLift": {
+            "mean": 0,
+            "low": -0.3,
+            "high": 0.4
+          },
+          "experienceLift": {
+            "mean": 3.6,
+            "low": 3,
+            "high": 4.2
+          }
+        }
+      },
+      {
+        "scale": 9,
+        "people": 486,
+        "seeds": 10,
+        "testDecisions": 1836,
+        "candidates": 326,
+        "baselineTopTied": 66,
+        "sameClientWeight": {
+          "main": 0.15,
+          "control": -0.01
+        },
+        "hit1": {
+          "baseline": 12.5,
+          "experience": 15.1,
+          "lift": {
+            "mean": 2.6,
+            "low": 1.9,
+            "high": 3.3
+          },
+          "controlLift": {
+            "mean": 0.1,
+            "low": -0.2,
+            "high": 0.3
+          },
+          "experienceLift": {
+            "mean": 2.5,
+            "low": 1.8,
+            "high": 3.3
+          }
+        },
+        "hit3": {
+          "baseline": 29.3,
+          "experience": 33.4,
+          "lift": {
+            "mean": 4.2,
+            "low": 3.6,
+            "high": 4.7
+          },
+          "controlLift": {
+            "mean": 0,
+            "low": -0.3,
+            "high": 0.3
+          },
+          "experienceLift": {
+            "mean": 4.1,
+            "low": 3.5,
+            "high": 4.8
+          }
+        }
+      }
+    ],
+    "normal": [
+      {
+        "scale": 2,
+        "people": 108,
+        "seeds": 10,
+        "testDecisions": 389,
+        "candidates": 76,
+        "baselineTopTied": 23,
+        "sameClientWeight": {
+          "main": 0.26,
+          "control": -0.02
+        },
+        "hit1": {
+          "baseline": 27.6,
+          "experience": 31.6,
+          "lift": {
+            "mean": 4,
+            "low": 2,
+            "high": 6
+          },
+          "controlLift": {
+            "mean": -0.2,
+            "low": -0.7,
+            "high": 0.3
+          },
+          "experienceLift": {
+            "mean": 4.2,
+            "low": 2,
+            "high": 6.4
+          }
+        },
+        "hit3": {
+          "baseline": 57.7,
+          "experience": 62,
+          "lift": {
+            "mean": 4.3,
+            "low": 3.4,
+            "high": 5.2
+          },
+          "controlLift": {
+            "mean": 0.2,
+            "low": -0.4,
+            "high": 0.8
+          },
+          "experienceLift": {
+            "mean": 4.1,
+            "low": 3.2,
+            "high": 5.1
+          }
+        }
+      },
+      {
+        "scale": 4,
+        "people": 216,
+        "seeds": 10,
+        "testDecisions": 795,
+        "candidates": 147,
+        "baselineTopTied": 39,
+        "sameClientWeight": {
+          "main": 0.22999999999999998,
+          "control": 0.01
+        },
+        "hit1": {
+          "baseline": 20,
+          "experience": 24.7,
+          "lift": {
+            "mean": 4.7,
+            "low": 3.7,
+            "high": 5.8
+          },
+          "controlLift": {
+            "mean": -0.5,
+            "low": -1.1,
+            "high": 0.1
+          },
+          "experienceLift": {
+            "mean": 5.2,
+            "low": 3.8,
+            "high": 6.6
+          }
+        },
+        "hit3": {
+          "baseline": 43.4,
+          "experience": 49.4,
+          "lift": {
+            "mean": 6,
+            "low": 4.8,
+            "high": 7.2
+          },
+          "controlLift": {
+            "mean": -0.1,
+            "low": -0.3,
+            "high": 0.1
+          },
+          "experienceLift": {
+            "mean": 6.1,
+            "low": 4.8,
+            "high": 7.4
+          }
+        }
+      }
+    ]
+  }
+}

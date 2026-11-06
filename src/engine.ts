@@ -63,8 +63,6 @@ export function reasons(model: ExperienceModel, c: Candidate, d: Decision): stri
         case 'tagOverlap':
         case 'textSim':
           return `similar past work: ${c.detail.sharedTags.slice(0, 3).join(', ') || 'related briefs'}`;
-        case 'knowsTeam':
-          return `has worked with ${c.detail.teammatesKnown} of the team`;
         case 'skillMatch':
           return `skills: ${c.detail.skills.join(', ')}`;
       }

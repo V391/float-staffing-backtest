@@ -1,5 +1,5 @@
 // Two rankers over the same candidate pool:
-//   baseline:   Float's documented Smart assign logic (role fit tier, then availability)
+//   baseline:   a reconstruction of Smart assign from Float's docs (role fit tier, then availability)
 //   experience: conditional logit over all features, trained on earlier staffing decisions
 import { FEATURES, type Candidate } from './features.js';
 
@@ -76,4 +76,14 @@ export function rankOf(g: Group, score: (c: Candidate) => number): number {
   const better = scores.filter((s) => s > target).length;
   const ties = scores.filter((s) => s === target).length - 1;
   return 1 + better + ties / 2;
+}
+
+// Chance the chosen candidate lands in the top k when ties are broken at random.
+// Without this, a tie for first counts as a miss, which penalises any ranker that ties often.
+export function hitChance(g: Group, score: (c: Candidate) => number, k: number): number {
+  const scores = g.candidates.map(score);
+  const target = scores[g.chosen]!;
+  const better = scores.filter((s) => s > target).length;
+  const ties = scores.filter((s) => s === target).length - 1;
+  return better >= k ? 0 : Math.min(1, (k - better) / (ties + 1));
 }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Seed a realistic agency into a Float trial account and backtest experience-aware staffing recommendations.",
+  "description": "Load a fictional agency into a Float trial and backtest experience-aware staffing recommendations.",
   "scripts": {
     "world": "tsx src/world.ts",
     "ping": "tsx src/ping.ts",
@@ -11,11 +11,12 @@
     "cleanup": "tsx src/cleanup.ts",
     "pull": "tsx src/pull.ts",
     "backtest": "tsx src/backtest.ts",
+    "sweep": "node scripts/sweep.mjs",
     "dump-features": "tsx src/dump-features.ts",
     "warehouse": "npm run dump-features && dbt build --project-dir warehouse --profiles-dir warehouse",
     "mcp": "tsx src/mcp.ts",
     "typecheck": "tsc --noEmit",
-    "test": "tsc --noEmit && node --import tsx --test tests/ranking.test.ts"
+    "test": "tsc --noEmit && node --import tsx --test tests/ranking.test.ts tests/audit.test.ts"
   },
   "devDependencies": {
     "@types/node": "22.10.2",

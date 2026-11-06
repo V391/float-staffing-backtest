@@ -5,7 +5,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { loadData } from './data.js';
 import { buildDecisions, reasons, toGroups } from './engine.js';
 import { FEATURES, FeatureBuilder, type Candidate } from './features.js';
-import { ExperienceModel, baselineScore, rankOf, type Group } from './models.js';
+import { ExperienceModel, baselineScore, hitChance, rankOf, type Group } from './models.js';
 
 const arg = (name: string) => process.argv.find((a) => a.startsWith(`--${name}=`))?.split('=')[1];
 const SPLIT = '2026-02-01';
@@ -39,7 +39,7 @@ interface Metrics {
 }
 function evaluate(gs: Group[], score: (c: Candidate) => number): Metrics {
   const ranks = gs.map((g) => rankOf(g, score));
-  const pct = (k: number) => Math.round((100 * ranks.filter((r) => r <= k).length) / ranks.length);
+  const pct = (k: number) => Math.round((1000 * gs.reduce((s, g) => s + hitChance(g, score, k), 0)) / gs.length) / 10;
   return {
     n: gs.length,
     hit1: pct(1),
@@ -47,6 +47,14 @@ function evaluate(gs: Group[], score: (c: Candidate) => number): Metrics {
     mrr: Math.round((100 * ranks.reduce((s, r) => s + 1 / r, 0)) / ranks.length) / 100,
   };
 }
+// Share of held-out decisions where the baseline's top score is shared by two or more people.
+const baselineTopTied = (() => {
+  const tied = test.filter((g) => {
+    const scores = g.candidates.map(baselineScore);
+    return scores.filter((s) => s === Math.max(...scores)).length > 1;
+  }).length;
+  return Math.round((100 * tied) / test.length);
+})();
 const randomHit3 = Math.round((100 * test.reduce((s, g) => s + Math.min(1, 3 / g.candidates.length), 0)) / test.length);
 const results = {
   baseline: evaluate(test, baselineScore),
@@ -107,6 +115,7 @@ const report = {
   split: SPLIT,
   decisions: { total: history.length, evaluated: groups.length, train: train.length, test: test.length, chosenFiltered },
   avgCandidates: Math.round(test.reduce((s, g) => s + g.candidates.length, 0) / test.length),
+  baselineTopTied,
   trainLoss: Math.round(loss * 1000) / 1000,
   weights: Object.fromEntries(FEATURES.map((f, i) => [f, Math.round(model.weights[i]! * 100) / 100])),
   results: { ...results, randomHit3 },
@@ -129,7 +138,8 @@ const report = {
 writeFileSync(REPORT, JSON.stringify({ input: IN, ...report }, null, 2));
 
 console.log(`Decisions: ${groups.length} replayed (${chosenFiltered} skipped: chosen person not in candidate pool)`);
-console.log(`Train ${train.length} before ${SPLIT}, test ${test.length} after. Avg ${report.avgCandidates} candidates per decision.\n`);
+console.log(`Train ${train.length} before ${SPLIT}, test ${test.length} after. Avg ${report.avgCandidates} candidates per decision.`);
+console.log(`Baseline's top score is tied on ${baselineTopTied}% of decisions; ties are broken at random in the scores below.\n`);
 console.log('Held-out backtest           hit@1   hit@3   MRR');
 console.log(`  Random                       -     ${String(randomHit3).padStart(3)}%     -`);
 for (const [name, m] of Object.entries(results)) {
@@ -139,7 +149,7 @@ console.log('\nLearned weights (standardized):', report.weights);
 if (live.length) {
   console.log(`\nLive open roles (n=${live.length}), truth in top 3 / top 1:`);
   console.log(`  Float Smart assign (real)   ${report.live.hit3.smartAssign}/${live.length}   ${report.live.top1.smartAssign}/${live.length}`);
-  console.log(`  Baseline (our copy)         ${report.live.hit3.baseline}/${live.length}   ${report.live.top1.baseline}/${live.length}`);
+  console.log(`  Reconstruction of it        ${report.live.hit3.baseline}/${live.length}   ${report.live.top1.baseline}/${live.length}`);
   console.log(`  Experience model            ${report.live.hit3.experience}/${live.length}   ${report.live.top1.experience}/${live.length}`);
   console.log(`  Baseline agrees with Smart assign's #1 on ${agreement}/${live.length} roles`);
 }

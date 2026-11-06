@@ -1,4 +1,4 @@
-// Generates a fictional 50 person agency with 18 months of staffing history.
+// Generates a fictional 54 person agency with 18 months of staffing history.
 // Output: out/world.json (everything, including hidden truth) and out/open-roles.csv
 // (future roles to check against Float's Smart assign in the UI).
 //
@@ -26,6 +26,9 @@ const SCALE = Number(arg('scale') ?? 1);
 // so past work carries no signal and a fair model should gain nothing from it.
 const STAFFING = arg('staffing') === 'title' ? 'title' : 'experience';
 const XP = STAFFING === 'title' ? 0 : 1;
+// --noise=normal swaps Gumbel noise, which is exactly what a logit assumes, for normal noise
+// of the same spread, to check the result doesn't depend on that match.
+const NOISE = arg('noise') === 'normal' ? 'normal' : 'gumbel';
 const OUT_DIR = arg('out') ?? 'out';
 const AGENCY = 'Kestrel & Co';
 const TODAY = '2026-10-17';
@@ -38,6 +41,10 @@ const FUTURE_PROJECTS = Math.round(12 * SCALE);
 const WHOEVER_FREE_RATE = 0.12;
 
 const rng = new Rng(SEED);
+const noise = () =>
+  NOISE === 'normal'
+    ? 1.2825 * Math.sqrt(-2 * Math.log(Math.max(rng.next(), 1e-12))) * Math.cos(2 * Math.PI * rng.next())
+    : rng.gumbel();
 
 // ---------- Roles ----------
 
@@ -563,7 +570,7 @@ function scoreCandidate(p: Person, need: Need, project: Project, producer: strin
     1.5 * compat +
     XP * (2.2 * sameClient + 1.6 * affinity + 0.9 * industryXp + 1.0 * knowsProducer + 0.5 * skillHits) -
     1.2 * loadFraction(p, need) +
-    1.0 * rng.gumbel()
+    1.0 * noise()
   );
 }
 

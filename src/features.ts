@@ -9,7 +9,6 @@ export const FEATURES = [
   'sameClient',
   'tagOverlap',
   'textSim',
-  'knowsTeam',
   'skillMatch',
 ] as const;
 export type FeatureName = (typeof FEATURES)[number];
@@ -33,7 +32,6 @@ export interface Candidate {
   detail: {
     clientProjects: number;
     sharedTags: string[];
-    teammatesKnown: number;
     bookedHours: number;
     freePct: number;
     skills: string[];
@@ -168,16 +166,17 @@ export class FeatureBuilder {
   }
 
   candidates(d: Decision): Candidate[] {
-    const teammates = d.project.team
-      .map((m) => m.personId)
-      .filter((id) => this.data.personById.has(id) && id !== d.chosenId);
+    // An open role can rule out people already on the project, because that is known today.
+    // A replayed decision can't: project_team is the finished team, and the other roles on
+    // the project may not have been filled yet when this one was.
+    const onProject = new Set(d.open ? d.project.team.map((m) => m.personId) : []);
     const needVec = this.text.vecOf(d.project);
     const out: Candidate[] = [];
 
     for (const person of this.data.people) {
       if (person.start && person.start > d.start) continue;
       if (person.end && person.end < d.end) continue;
-      if (teammates.includes(person.id)) continue;
+      if (onProject.has(person.id)) continue;
       const booked = this.booked(person.id, d);
       if (person.capacity - booked < d.hours - 1e-9) continue;
 
@@ -193,10 +192,6 @@ export class FeatureBuilder {
       const tagOverlap =
         d.project.tags.reduce((s, t) => s + Math.min(1, tagWeights.get(t) ?? 0), 0) / Math.max(1, d.project.tags.length);
 
-      const knownPeople = new Set<number>();
-      for (const h of hist) for (const m of h.project.team) knownPeople.add(m.personId);
-      const teammatesKnown = teammates.filter((id) => knownPeople.has(id)).length;
-
       const skills = person.tags.filter((t) => d.project.tags.includes(t));
       const free = Math.max(0, person.capacity - booked) * (1 - this.awayFraction(person.id, d));
 
@@ -208,13 +203,11 @@ export class FeatureBuilder {
           Math.log1p(clientHist.reduce((s, h) => s + h.weight, 0)),
           tagOverlap,
           cosine(normalize(profile), needVec),
-          teammates.length ? teammatesKnown / teammates.length : 0,
           Math.min(skills.length, 3),
         ],
         detail: {
           clientProjects: clientHist.length,
           sharedTags,
-          teammatesKnown,
           bookedHours: booked,
           freePct: Math.round((100 * free) / person.capacity),
           skills,
