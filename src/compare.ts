@@ -3,7 +3,7 @@
 //
 //   npx tsx src/compare.ts                                   the 54-person agency loaded into Float
 //   npx tsx src/compare.ts --sweep=gumbel-experience-4       pool the 10 sweep runs at 216 people
-//   ... --json=docs/agreement-results.json --label=live-54   append the summary to a JSON file
+//   ... --json=docs/agreement-results.json --label=sweep-216  write the summary under that key
 //
 // Same decisions, same split and same training as src/backtest.ts, so the hit rates match it.
 // The generator's hidden reasons (world.json) are read only to explain outcomes, never as features.
@@ -206,8 +206,25 @@ function summarise(rows: Row[]) {
     },
   };
 
+  // Lift in points, split by case. "Same person" adds nothing to first pick by definition.
+  const points = (rs: Row[], f: (r: Row) => number) => Math.round((1000 * sum(rs, f)) / n) / 10;
+  const lift = (exp: (r: Row) => number, base: (r: Row) => number) => {
+    const part = (a: Agreement) => points(rows.filter((r) => r.agreement === a), (r) => exp(r) - base(r));
+    return { total: points(rows, (r) => exp(r) - base(r)), same: part('same'), tie: part('tie'), different: part('different') };
+  };
+  const byPickedBy = ['score', 'whoever-free'].map((p) => {
+    const rs = mapped.filter((r) => r.pickedBy === p);
+    return {
+      pickedBy: p,
+      decisions: rs.length,
+      firstPick: { baseline: pct(sum(rs, (r) => r.base1), rs.length), experience: pct(sum(rs, (r) => r.exp1), rs.length) },
+    };
+  });
+
   return {
     decisions: n,
+    lift: { firstPick: lift((r) => r.exp1, (r) => r.base1), top3: lift((r) => r.exp3, (r) => r.base3) },
+    byPickedBy,
     overall: {
       firstPick: { baseline: pct(sum(rows, (r) => r.base1), n), experience: pct(sum(rows, (r) => r.exp1), n) },
       top3: { baseline: pct(sum(rows, (r) => r.base3), n), experience: pct(sum(rows, (r) => r.exp3), n) },
@@ -245,7 +262,14 @@ if (json) {
 const s = summary;
 console.log(`${label}: ${s.decisions} held-out decisions from ${s.runs} run(s)`);
 console.log(`Overall first pick  baseline ${s.overall.firstPick.baseline}%  experience ${s.overall.firstPick.experience}%`);
-console.log(`Overall top 3       baseline ${s.overall.top3.baseline}%  experience ${s.overall.top3.experience}%\n`);
+console.log(`Overall top 3       baseline ${s.overall.top3.baseline}%  experience ${s.overall.top3.experience}%`);
+for (const [name, l] of Object.entries(s.lift)) {
+  console.log(`Lift ${name.padEnd(9)} ${l.total} points: same ${l.same}, tie ${l.tie}, different ${l.different}`);
+}
+for (const p of s.byPickedBy) {
+  console.log(`Picked by ${p.pickedBy.padEnd(12)} ${p.decisions} decisions, first pick baseline ${p.firstPick.baseline}% experience ${p.firstPick.experience}%`);
+}
+console.log('');
 console.log('First pick agreement   share   first pick (base / exp)   top 3 (base / exp)');
 for (const a of s.byAgreement) {
   console.log(
