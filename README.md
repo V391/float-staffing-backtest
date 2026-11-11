@@ -2,6 +2,8 @@
 
 Experience-aware staffing recommendations for [Float](https://www.float.com), backtested against a reconstruction of Float's Smart assign. Two-page write-up: [Experience-aware staffing for Float (PDF)](https://v391.github.io/float-staffing-backtest/docs/Experience-aware-staffing-for-Float.pdf).
 
+**Evaluation on one page:** [prediction unit, split, where the two rankers agree and differ, limits of the synthetic data, and how to evaluate this in production](docs/EVALUATION.md).
+
 **Detailed methodology:** [Step-by-step methodology and technical implementation](docs/METHODOLOGY.md), including data generation, decision labels, candidate pools, feature engineering, conditional logistic regression, temporal backtesting, validation, and limitations.
 
 Smart assign ranks people by job title and availability ([help article](https://support.float.com/en/articles/13868430-role-based-planning-smart-assign)), so for a given role it suggests the same people whatever the client. This repo adds past work as a signal (same client, similar projects, skills) and measures whether that picks the person a manager actually chose.
@@ -89,6 +91,7 @@ src/pull.ts       read it back out, read-only -> out/float-export.json
 src/features.ts   6 signals per candidate, using what was known at decision time
 src/models.ts     reconstruction of Smart assign + experience model (conditional logit)
 src/backtest.ts   replay every decision, train before 2026-02-01, test after
+src/compare.ts    where the two rankers agree and differ, and why (docs/EVALUATION.md)
 src/mcp.ts        MCP server: recommend_people, recommend_for_brief, list_open_roles
 scripts/sweep.mjs size sweep and control, 140 runs in parallel, offline
 warehouse/        dbt (DuckDB) rebuild of the features in SQL, with tests

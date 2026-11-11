@@ -1,0 +1,317 @@
+{
+  "live-54": {
+    "runs": 1,
+    "decisions": 205,
+    "overall": {
+      "firstPick": {
+        "baseline": 33.1,
+        "experience": 36.6
+      },
+      "top3": {
+        "baseline": 66.5,
+        "experience": 67.8
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 151,
+        "share": 73.7,
+        "firstPick": {
+          "baseline": 37.1,
+          "experience": 37.1
+        },
+        "top3": {
+          "baseline": 65.2,
+          "experience": 66.9
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 28,
+        "share": 13.7,
+        "firstPick": {
+          "baseline": 28,
+          "experience": 28.6
+        },
+        "top3": {
+          "baseline": 71.4,
+          "experience": 67.9
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 26,
+        "share": 12.7,
+        "firstPick": {
+          "baseline": 15.4,
+          "experience": 42.3
+        },
+        "top3": {
+          "baseline": 69.2,
+          "experience": 73.1
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 26,
+      "modelPickFromWeakerRoleFitTier": 15.4,
+      "drivers": [
+        {
+          "feature": "availability",
+          "decisions": 4,
+          "modelRight": 1,
+          "baselineRight": 1
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 16,
+          "modelRight": 8,
+          "baselineRight": 3
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 1,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "textSim",
+          "decisions": 1,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 4,
+          "modelRight": 2,
+          "baselineRight": 0
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 205,
+      "whoeverFree": 10.2,
+      "chosenHadClientHistory": 37.1,
+      "modelMisses": {
+        "expected": 130,
+        "whoeverFree": 6.9,
+        "hiddenReasonModelPickLacked": 27.7
+      }
+    }
+  },
+  "sweep-216": {
+    "runs": 10,
+    "decisions": 7941,
+    "overall": {
+      "firstPick": {
+        "baseline": 19.6,
+        "experience": 23.4
+      },
+      "top3": {
+        "baseline": 42.4,
+        "experience": 46.6
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 2874,
+        "share": 36.2,
+        "firstPick": {
+          "baseline": 24.3,
+          "experience": 24.3
+        },
+        "top3": {
+          "baseline": 40.7,
+          "experience": 42
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 2480,
+        "share": 31.2,
+        "firstPick": {
+          "baseline": 18.9,
+          "experience": 26.9
+        },
+        "top3": {
+          "baseline": 50.4,
+          "experience": 53.7
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 2587,
+        "share": 32.6,
+        "firstPick": {
+          "baseline": 15.1,
+          "experience": 19.2
+        },
+        "top3": {
+          "baseline": 36.5,
+          "experience": 44.9
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 2587,
+      "modelPickFromWeakerRoleFitTier": 3.7,
+      "drivers": [
+        {
+          "feature": "titleFit",
+          "decisions": 1,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "availability",
+          "decisions": 14,
+          "modelRight": 7,
+          "baselineRight": 0
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 1958,
+          "modelRight": 418,
+          "baselineRight": 293.8
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 288,
+          "modelRight": 37,
+          "baselineRight": 43.3
+        },
+        {
+          "feature": "textSim",
+          "decisions": 31,
+          "modelRight": 4,
+          "baselineRight": 4
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 295,
+          "modelRight": 30,
+          "baselineRight": 50.1
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 7941,
+      "whoeverFree": 12.1,
+      "chosenHadClientHistory": 22.9,
+      "modelMisses": {
+        "expected": 6080.5,
+        "whoeverFree": 11.1,
+        "hiddenReasonModelPickLacked": 32.7
+      }
+    }
+  },
+  "control-216": {
+    "runs": 10,
+    "decisions": 7944,
+    "overall": {
+      "firstPick": {
+        "baseline": 21.3,
+        "experience": 20.5
+      },
+      "top3": {
+        "baseline": 45.1,
+        "experience": 44.9
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 4460,
+        "share": 56.1,
+        "firstPick": {
+          "baseline": 23.2,
+          "experience": 23.2
+        },
+        "top3": {
+          "baseline": 42.5,
+          "experience": 42
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 3005,
+        "share": 37.8,
+        "firstPick": {
+          "baseline": 18.9,
+          "experience": 18.6
+        },
+        "top3": {
+          "baseline": 50.3,
+          "experience": 50.8
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 479,
+        "share": 6,
+        "firstPick": {
+          "baseline": 18.2,
+          "experience": 7.9
+        },
+        "top3": {
+          "baseline": 36.3,
+          "experience": 34.2
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 479,
+      "modelPickFromWeakerRoleFitTier": 1.3,
+      "drivers": [
+        {
+          "feature": "titleFit",
+          "decisions": 2,
+          "modelRight": 0,
+          "baselineRight": 1
+        },
+        {
+          "feature": "availability",
+          "decisions": 5,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 153,
+          "modelRight": 8,
+          "baselineRight": 35.1
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 87,
+          "modelRight": 9,
+          "baselineRight": 15.3
+        },
+        {
+          "feature": "textSim",
+          "decisions": 87,
+          "modelRight": 12,
+          "baselineRight": 12.8
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 145,
+          "modelRight": 9,
+          "baselineRight": 23.1
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 7944,
+      "whoeverFree": 12.4,
+      "chosenHadClientHistory": 9.7,
+      "modelMisses": {
+        "expected": 6312.7,
+        "whoeverFree": 9.2,
+        "hiddenReasonModelPickLacked": 18.2
+      }
+    }
+  }
+}
