@@ -1,0 +1,818 @@
+{
+  "live-54": {
+    "runs": 1,
+    "decisions": 205,
+    "lift": {
+      "firstPick": {
+        "total": 3.5,
+        "same": 0,
+        "tie": 0.1,
+        "different": 3.4
+      },
+      "top3": {
+        "total": 1.3,
+        "same": 1.3,
+        "tie": -0.5,
+        "different": 0.5
+      }
+    },
+    "byPickedBy": [
+      {
+        "pickedBy": "score",
+        "decisions": 184,
+        "firstPick": {
+          "baseline": 29.8,
+          "experience": 34.2
+        }
+      },
+      {
+        "pickedBy": "whoever-free",
+        "decisions": 21,
+        "firstPick": {
+          "baseline": 61.9,
+          "experience": 57.1
+        }
+      }
+    ],
+    "overall": {
+      "firstPick": {
+        "baseline": 33.1,
+        "experience": 36.6
+      },
+      "top3": {
+        "baseline": 66.5,
+        "experience": 67.8
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 151,
+        "share": 73.7,
+        "firstPick": {
+          "baseline": 37.1,
+          "experience": 37.1
+        },
+        "top3": {
+          "baseline": 65.2,
+          "experience": 66.9
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 28,
+        "share": 13.7,
+        "firstPick": {
+          "baseline": 28,
+          "experience": 28.6
+        },
+        "top3": {
+          "baseline": 71.4,
+          "experience": 67.9
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 26,
+        "share": 12.7,
+        "firstPick": {
+          "baseline": 15.4,
+          "experience": 42.3
+        },
+        "top3": {
+          "baseline": 69.2,
+          "experience": 73.1
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 26,
+      "modelPickFromWeakerRoleFitTier": 15.4,
+      "drivers": [
+        {
+          "feature": "availability",
+          "decisions": 4,
+          "modelRight": 1,
+          "baselineRight": 1
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 16,
+          "modelRight": 8,
+          "baselineRight": 3
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 1,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "textSim",
+          "decisions": 1,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 4,
+          "modelRight": 2,
+          "baselineRight": 0
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 205,
+      "whoeverFree": 10.2,
+      "chosenHadClientHistory": 37.1,
+      "modelMisses": {
+        "expected": 130,
+        "whoeverFree": 6.9,
+        "hiddenReasonModelPickLacked": 27.7
+      }
+    }
+  },
+  "sweep-108": {
+    "runs": 10,
+    "decisions": 3906,
+    "lift": {
+      "firstPick": {
+        "total": 2.8,
+        "same": 0,
+        "tie": 1.4,
+        "different": 1.3
+      },
+      "top3": {
+        "total": 3.5,
+        "same": 1.6,
+        "tie": 0.3,
+        "different": 1.6
+      }
+    },
+    "byPickedBy": [
+      {
+        "pickedBy": "score",
+        "decisions": 3429,
+        "firstPick": {
+          "baseline": 25.1,
+          "experience": 29.4
+        }
+      },
+      {
+        "pickedBy": "whoever-free",
+        "decisions": 477,
+        "firstPick": {
+          "baseline": 49.1,
+          "experience": 40.7
+        }
+      }
+    ],
+    "overall": {
+      "firstPick": {
+        "baseline": 28,
+        "experience": 30.8
+      },
+      "top3": {
+        "baseline": 55.7,
+        "experience": 59.2
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 2213,
+        "share": 56.7,
+        "firstPick": {
+          "baseline": 31.7,
+          "experience": 31.7
+        },
+        "top3": {
+          "baseline": 53.3,
+          "experience": 56.2
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 770,
+        "share": 19.7,
+        "firstPick": {
+          "baseline": 26.4,
+          "experience": 33.6
+        },
+        "top3": {
+          "baseline": 66,
+          "experience": 67.5
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 923,
+        "share": 23.6,
+        "firstPick": {
+          "baseline": 20.7,
+          "experience": 26.3
+        },
+        "top3": {
+          "baseline": 52.8,
+          "experience": 59.5
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 923,
+      "modelPickFromWeakerRoleFitTier": 5.1,
+      "drivers": [
+        {
+          "feature": "titleFit",
+          "decisions": 3,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "availability",
+          "decisions": 15,
+          "modelRight": 5,
+          "baselineRight": 1
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 729,
+          "modelRight": 198,
+          "baselineRight": 155.5
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 74,
+          "modelRight": 19,
+          "baselineRight": 16
+        },
+        {
+          "feature": "textSim",
+          "decisions": 23,
+          "modelRight": 4,
+          "baselineRight": 4
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 79,
+          "modelRight": 17,
+          "baselineRight": 14.7
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 3906,
+      "whoeverFree": 12.2,
+      "chosenHadClientHistory": 31.9,
+      "modelMisses": {
+        "expected": 2703.2,
+        "whoeverFree": 10.5,
+        "hiddenReasonModelPickLacked": 30.8
+      }
+    }
+  },
+  "sweep-216": {
+    "runs": 10,
+    "decisions": 7941,
+    "lift": {
+      "firstPick": {
+        "total": 3.8,
+        "same": 0,
+        "tie": 2.5,
+        "different": 1.3
+      },
+      "top3": {
+        "total": 4.2,
+        "same": 0.5,
+        "tie": 1,
+        "different": 2.7
+      }
+    },
+    "byPickedBy": [
+      {
+        "pickedBy": "score",
+        "decisions": 6984,
+        "firstPick": {
+          "baseline": 16.5,
+          "experience": 22.6
+        }
+      },
+      {
+        "pickedBy": "whoever-free",
+        "decisions": 957,
+        "firstPick": {
+          "baseline": 42,
+          "experience": 29.5
+        }
+      }
+    ],
+    "overall": {
+      "firstPick": {
+        "baseline": 19.6,
+        "experience": 23.4
+      },
+      "top3": {
+        "baseline": 42.4,
+        "experience": 46.6
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 2874,
+        "share": 36.2,
+        "firstPick": {
+          "baseline": 24.3,
+          "experience": 24.3
+        },
+        "top3": {
+          "baseline": 40.7,
+          "experience": 42
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 2480,
+        "share": 31.2,
+        "firstPick": {
+          "baseline": 18.9,
+          "experience": 26.9
+        },
+        "top3": {
+          "baseline": 50.4,
+          "experience": 53.7
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 2587,
+        "share": 32.6,
+        "firstPick": {
+          "baseline": 15.1,
+          "experience": 19.2
+        },
+        "top3": {
+          "baseline": 36.5,
+          "experience": 44.9
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 2587,
+      "modelPickFromWeakerRoleFitTier": 3.7,
+      "drivers": [
+        {
+          "feature": "titleFit",
+          "decisions": 1,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "availability",
+          "decisions": 14,
+          "modelRight": 7,
+          "baselineRight": 0
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 1958,
+          "modelRight": 418,
+          "baselineRight": 293.8
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 288,
+          "modelRight": 37,
+          "baselineRight": 43.3
+        },
+        {
+          "feature": "textSim",
+          "decisions": 31,
+          "modelRight": 4,
+          "baselineRight": 4
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 295,
+          "modelRight": 30,
+          "baselineRight": 50.1
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 7941,
+      "whoeverFree": 12.1,
+      "chosenHadClientHistory": 22.9,
+      "modelMisses": {
+        "expected": 6080.5,
+        "whoeverFree": 11.1,
+        "hiddenReasonModelPickLacked": 32.7
+      }
+    }
+  },
+  "sweep-324": {
+    "runs": 10,
+    "decisions": 12275,
+    "lift": {
+      "firstPick": {
+        "total": 2.3,
+        "same": 0,
+        "tie": 2.1,
+        "different": 0.3
+      },
+      "top3": {
+        "total": 3.6,
+        "same": 0.4,
+        "tie": 1.1,
+        "different": 2.1
+      }
+    },
+    "byPickedBy": [
+      {
+        "pickedBy": "score",
+        "decisions": 10758,
+        "firstPick": {
+          "baseline": 13.4,
+          "experience": 18.1
+        }
+      },
+      {
+        "pickedBy": "whoever-free",
+        "decisions": 1517,
+        "firstPick": {
+          "baseline": 39,
+          "experience": 24.8
+        }
+      }
+    ],
+    "overall": {
+      "firstPick": {
+        "baseline": 16.6,
+        "experience": 18.9
+      },
+      "top3": {
+        "baseline": 35.9,
+        "experience": 39.5
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 3583,
+        "share": 29.2,
+        "firstPick": {
+          "baseline": 20.5,
+          "experience": 20.5
+        },
+        "top3": {
+          "baseline": 34.2,
+          "experience": 35.5
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 4406,
+        "share": 35.9,
+        "firstPick": {
+          "baseline": 15.7,
+          "experience": 21.5
+        },
+        "top3": {
+          "baseline": 41.5,
+          "experience": 44.7
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 4286,
+        "share": 34.9,
+        "firstPick": {
+          "baseline": 14.2,
+          "experience": 15
+        },
+        "top3": {
+          "baseline": 31.5,
+          "experience": 37.5
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 4286,
+      "modelPickFromWeakerRoleFitTier": 2.4,
+      "drivers": [
+        {
+          "feature": "availability",
+          "decisions": 12,
+          "modelRight": 2,
+          "baselineRight": 1
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 2862,
+          "modelRight": 504,
+          "baselineRight": 404.6
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 809,
+          "modelRight": 83,
+          "baselineRight": 117.8
+        },
+        {
+          "feature": "textSim",
+          "decisions": 82,
+          "modelRight": 12,
+          "baselineRight": 10.8
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 521,
+          "modelRight": 40,
+          "baselineRight": 73.4
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 12275,
+      "whoeverFree": 12.4,
+      "chosenHadClientHistory": 17.6,
+      "modelMisses": {
+        "expected": 9955.5,
+        "whoeverFree": 11.5,
+        "hiddenReasonModelPickLacked": 33.6
+      }
+    }
+  },
+  "sweep-486": {
+    "runs": 10,
+    "decisions": 18362,
+    "lift": {
+      "firstPick": {
+        "total": 2.6,
+        "same": 0,
+        "tie": 2.3,
+        "different": 0.3
+      },
+      "top3": {
+        "total": 4.1,
+        "same": 0.3,
+        "tie": 1.6,
+        "different": 2.2
+      }
+    },
+    "byPickedBy": [
+      {
+        "pickedBy": "score",
+        "decisions": 16127,
+        "firstPick": {
+          "baseline": 9.9,
+          "experience": 14.6
+        }
+      },
+      {
+        "pickedBy": "whoever-free",
+        "decisions": 2235,
+        "firstPick": {
+          "baseline": 30.9,
+          "experience": 18.9
+        }
+      }
+    ],
+    "overall": {
+      "firstPick": {
+        "baseline": 12.5,
+        "experience": 15.1
+      },
+      "top3": {
+        "baseline": 29.3,
+        "experience": 33.5
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 3273,
+        "share": 17.8,
+        "firstPick": {
+          "baseline": 16.7,
+          "experience": 16.7
+        },
+        "top3": {
+          "baseline": 27.2,
+          "experience": 29.1
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 8535,
+        "share": 46.5,
+        "firstPick": {
+          "baseline": 12,
+          "experience": 16.9
+        },
+        "top3": {
+          "baseline": 33,
+          "experience": 36.5
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 6554,
+        "share": 35.7,
+        "firstPick": {
+          "baseline": 11,
+          "experience": 11.9
+        },
+        "top3": {
+          "baseline": 25.5,
+          "experience": 31.7
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 6554,
+      "modelPickFromWeakerRoleFitTier": 1.4,
+      "drivers": [
+        {
+          "feature": "availability",
+          "decisions": 6,
+          "modelRight": 1,
+          "baselineRight": 0.5
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 4287,
+          "modelRight": 605,
+          "baselineRight": 458.4
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 1331,
+          "modelRight": 107,
+          "baselineRight": 148.4
+        },
+        {
+          "feature": "textSim",
+          "decisions": 203,
+          "modelRight": 17,
+          "baselineRight": 22
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 727,
+          "modelRight": 51,
+          "baselineRight": 91.8
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 18362,
+      "whoeverFree": 12.2,
+      "chosenHadClientHistory": 14.9,
+      "modelMisses": {
+        "expected": 15590.8,
+        "whoeverFree": 11.6,
+        "hiddenReasonModelPickLacked": 33.7
+      }
+    }
+  },
+  "control-216": {
+    "runs": 10,
+    "decisions": 7944,
+    "lift": {
+      "firstPick": {
+        "total": -0.8,
+        "same": 0,
+        "tie": -0.1,
+        "different": -0.6
+      },
+      "top3": {
+        "total": -0.2,
+        "same": -0.3,
+        "tie": 0.2,
+        "different": -0.1
+      }
+    },
+    "byPickedBy": [
+      {
+        "pickedBy": "score",
+        "decisions": 6962,
+        "firstPick": {
+          "baseline": 18.3,
+          "experience": 17.7
+        }
+      },
+      {
+        "pickedBy": "whoever-free",
+        "decisions": 982,
+        "firstPick": {
+          "baseline": 42.2,
+          "experience": 40.7
+        }
+      }
+    ],
+    "overall": {
+      "firstPick": {
+        "baseline": 21.3,
+        "experience": 20.5
+      },
+      "top3": {
+        "baseline": 45.1,
+        "experience": 44.9
+      }
+    },
+    "byAgreement": [
+      {
+        "agreement": "same",
+        "decisions": 4460,
+        "share": 56.1,
+        "firstPick": {
+          "baseline": 23.2,
+          "experience": 23.2
+        },
+        "top3": {
+          "baseline": 42.5,
+          "experience": 42
+        }
+      },
+      {
+        "agreement": "tie",
+        "decisions": 3005,
+        "share": 37.8,
+        "firstPick": {
+          "baseline": 18.9,
+          "experience": 18.6
+        },
+        "top3": {
+          "baseline": 50.3,
+          "experience": 50.8
+        }
+      },
+      {
+        "agreement": "different",
+        "decisions": 479,
+        "share": 6,
+        "firstPick": {
+          "baseline": 18.2,
+          "experience": 7.9
+        },
+        "top3": {
+          "baseline": 36.3,
+          "experience": 34.2
+        }
+      }
+    ],
+    "whenDifferent": {
+      "decisions": 479,
+      "modelPickFromWeakerRoleFitTier": 1.3,
+      "drivers": [
+        {
+          "feature": "titleFit",
+          "decisions": 2,
+          "modelRight": 0,
+          "baselineRight": 1
+        },
+        {
+          "feature": "availability",
+          "decisions": 5,
+          "modelRight": 0,
+          "baselineRight": 0
+        },
+        {
+          "feature": "sameClient",
+          "decisions": 153,
+          "modelRight": 8,
+          "baselineRight": 35.1
+        },
+        {
+          "feature": "tagOverlap",
+          "decisions": 87,
+          "modelRight": 9,
+          "baselineRight": 15.3
+        },
+        {
+          "feature": "textSim",
+          "decisions": 87,
+          "modelRight": 12,
+          "baselineRight": 12.8
+        },
+        {
+          "feature": "skillMatch",
+          "decisions": 145,
+          "modelRight": 9,
+          "baselineRight": 23.1
+        }
+      ]
+    },
+    "generator": {
+      "mapped": 7944,
+      "whoeverFree": 12.4,
+      "chosenHadClientHistory": 9.7,
+      "modelMisses": {
+        "expected": 6312.7,
+        "whoeverFree": 9.2,
+        "hiddenReasonModelPickLacked": 18.2
+      }
+    }
+  }
+}
